@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
 import TransitionCurve from "@/components/TransitionCurve";
+import TransitionStairs from "@/components/TransitionStairs";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,7 +24,8 @@ export default function RootLayout({
           <Link href='/'>Home</Link>
           <Link href='/about'>About</Link>
         </header>
-        <TransitionCurve>{children}</TransitionCurve>
+        {/* <TransitionCurve>{children}</TransitionCurve> */}
+        <TransitionStairs>{ children }</TransitionStairs>
       </body>
     </html>
   )
