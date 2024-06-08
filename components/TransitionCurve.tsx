@@ -1,77 +1,79 @@
 'use client'
 
-import { motion, AnimatePresence, MotionProps } from 'framer-motion'
+import type { MotionProps } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import { usePathname } from 'next/navigation'
-import { useEffect, useLayoutEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FrozenRouter } from './FrozenRouter'
 
 export const text: MotionProps['variants'] = {
   initial: {
-    opacity: 1
+    opacity: 1,
   },
   enter: {
     opacity: 0,
     top: -100,
     transition: { duration: 0.75, delay: 0.35, ease: [0.76, 0, 0.24, 1] },
-    transitionEnd: { top: '47.5%' }
+    transitionEnd: { top: '47.5%' },
   },
   exit: {
     opacity: 1,
     top: '40%',
-    transition: { duration: 0.5, delay: 0.4, ease: [0.33, 1, 0.68, 1] }
-  }
+    transition: { duration: 0.5, delay: 0.4, ease: [0.33, 1, 0.68, 1] },
+  },
 }
 
-export const curve = (initialPath: string, targetPath: string): MotionProps['variants'] => {
+export function curve(initialPath: string, targetPath: string): MotionProps['variants'] {
   return {
     initial: {
-      d: initialPath
+      d: initialPath,
     },
     enter: {
       d: targetPath,
-      transition: { duration: 0.75, delay: 0.35, ease: [0.76, 0, 0.24, 1] }
+      transition: { duration: 0.75, delay: 0.35, ease: [0.76, 0, 0.24, 1] },
     },
     exit: {
       d: initialPath,
-      transition: { duration: 0.75, ease: [0.76, 0, 0.24, 1] }
-    }
+      transition: { duration: 0.75, ease: [0.76, 0, 0.24, 1] },
+    },
   }
 }
 
 export const translate: MotionProps['variants'] = {
   initial: {
-    top: '-300px'
+    top: '-300px',
   },
   enter: {
     top: '-100vh',
     transition: { duration: 0.75, delay: 0.35, ease: [0.76, 0, 0.24, 1] },
     transitionEnd: {
-      top: '100vh'
-    }
+      top: '100vh',
+    },
   },
   exit: {
     top: '-300px',
-    transition: { duration: 0.75, ease: [0.76, 0, 0.24, 1] }
-  }
+    transition: { duration: 0.75, ease: [0.76, 0, 0.24, 1] },
+  },
 }
 
 const routes: Record<string, string> = {
   '/': 'Home',
   '/about': 'About',
-  '/contact': 'Contact'
+  '/contact': 'Contact',
 }
 
-const anim = (variants: MotionProps['variants']): MotionProps => {
+function anim(variants: MotionProps['variants']): MotionProps {
   return {
     variants,
     initial: 'initial',
     animate: 'enter',
-    exit: 'exit'
+    exit: 'exit',
   }
 }
 
-const SVG = ({ height, width }: { width: number | null; height: number | null }) => {
-  if (!(height && width)) return
+function SVG({ height, width }: { width: number | null, height: number | null }) {
+  if (!(height && width))
+    return
   const initialPath = `
         M0 300 
         Q${width / 2} 0 ${width} 300
@@ -101,16 +103,16 @@ const SVG = ({ height, width }: { width: number | null; height: number | null })
 export default function Transition({ children }: { children: React.ReactNode }) {
   const key = usePathname()
 
-  const [dimensions, setDimensions] = useState<{ width: number | null; height: number | null }>({
+  const [dimensions, setDimensions] = useState<{ width: number | null, height: number | null }>({
     width: null,
-    height: null
+    height: null,
   })
 
   useEffect(() => {
     function resize() {
       setDimensions({
         width: window.innerWidth,
-        height: window.innerHeight
+        height: window.innerHeight,
       })
     }
     resize()

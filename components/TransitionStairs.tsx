@@ -1,42 +1,44 @@
 'use client'
 
-import { AnimatePresence, MotionProps, motion } from 'framer-motion'
-import React, { ReactNode } from 'react'
-import { FrozenRouter } from './FrozenRouter'
+import type { MotionProps } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
+import type { ReactNode } from 'react'
+import React from 'react'
 import { usePathname } from 'next/navigation'
+import { FrozenRouter } from './FrozenRouter'
 
 const expand: MotionProps['variants'] = {
   initial: {
-    top: 0
+    top: 0,
   },
-  enter: (i) => ({
+  enter: i => ({
     top: '100vh',
     transition: {
       duration: 0.4,
       delay: 0.05 * i,
-      ease: [0.215, 0.61, 0.355, 1]
+      ease: [0.215, 0.61, 0.355, 1],
     },
-    transitionEnd: { height: '0', top: '0' }
+    transitionEnd: { height: '0', top: '0' },
   }),
-  exit: (i) => ({
+  exit: i => ({
     height: '100vh',
     transition: {
       duration: 0.4,
       delay: 0.05 * i,
-      ease: [0.215, 0.61, 0.355, 1]
-    }
-  })
+      ease: [0.215, 0.61, 0.355, 1],
+    },
+  }),
 }
 const opacity: MotionProps['variants'] = {
   initial: {
-    opacity: 0.5
+    opacity: 0.5,
   },
   enter: {
-    opacity: 0
+    opacity: 0,
   },
   exit: {
-    opacity: 0.5
-  }
+    opacity: 0.5,
+  },
 }
 
 export default function TransitionStairs({ children }: { children: ReactNode }) {
@@ -44,14 +46,14 @@ export default function TransitionStairs({ children }: { children: ReactNode }) 
 
   const anim = (
     variants: MotionProps['variants'],
-    custom: MotionProps['custom'] = null
+    custom: MotionProps['custom'] = null,
   ): MotionProps => {
     return {
       initial: 'initial',
       animate: 'enter',
       exit: 'exit',
       custom,
-      variants
+      variants,
     }
   }
 

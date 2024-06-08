@@ -1,19 +1,21 @@
 'use client'
 
-import { AnimatePresence, MotionProps, motion } from 'framer-motion'
+import type { MotionProps } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import React, { ReactNode } from 'react'
+import type { ReactNode } from 'react'
+import React from 'react'
 import { FrozenRouter } from './FrozenRouter'
 
 const perspective: MotionProps['variants'] = {
   initial: {
     scale: 1,
-    y: 0
+    y: 0,
   },
   enter: {
     scale: 1,
-    y: 0
+    y: 0,
   },
   exit: {
     scale: 0.9,
@@ -21,48 +23,48 @@ const perspective: MotionProps['variants'] = {
     opacity: 0.5,
     transition: {
       duration: 1.2,
-      ease: [0.76, 0, 0.24, 1]
-    }
-  }
+      ease: [0.76, 0, 0.24, 1],
+    },
+  },
 }
 
 const slide: MotionProps['variants'] = {
   initial: {
-    y: '100vh'
+    y: '100vh',
   },
   enter: {
-    y: '100vh'
+    y: '100vh',
   },
   exit: {
     y: 0,
     transition: {
       duration: 1,
-      ease: [0.76, 0, 0.24, 1]
-    }
-  }
+      ease: [0.76, 0, 0.24, 1],
+    },
+  },
 }
 
 const opacity: MotionProps['variants'] = {
   initial: {
-    opacity: 0
+    opacity: 0,
   },
   enter: {
     opacity: 1,
     transition: {
-      duration: 0.5
-    }
+      duration: 0.5,
+    },
   },
   exit: {
-    opacity: 1
-  }
+    opacity: 1,
+  },
 }
 
-const anim = (variants: MotionProps['variants']): MotionProps => {
+function anim(variants: MotionProps['variants']): MotionProps {
   return {
     initial: 'initial',
     animate: 'enter',
     exit: 'exit',
-    variants
+    variants,
   }
 }
 
