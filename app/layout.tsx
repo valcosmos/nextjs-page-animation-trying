@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
+import TransitionCurve from "@/components/TransitionCurve";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +18,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <header className="fixed z-[12] top-0 left-0 w-screen h-8">
+          <Link href='/'>Home</Link>
+          <Link href='/about'>About</Link>
+        </header>
+        <TransitionCurve>{children}</TransitionCurve>
+      </body>
     </html>
-  );
+  )
 }
