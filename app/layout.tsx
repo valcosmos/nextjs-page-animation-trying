@@ -5,6 +5,7 @@ import Link from 'next/link'
 import TransitionCurve from '@/components/TransitionCurve'
 import TransitionStairs from '@/components/TransitionStairs'
 import TransitionInner from '@/components/TransitionInner'
+import TransitionEase from '@/components/TransitionEase'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -21,13 +22,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        {/* <header className="fixed z-[12] top-0 left-0 w-screen h-8">
+        <header className="fixed z-[12] top-0 left-0 w-screen h-8">
           <Link href="/">Home</Link>
           <Link href="/about">About</Link>
-        </header> */}
+        </header>
         {/* <TransitionCurve>{children}</TransitionCurve> */}
         {/* <TransitionStairs>{ children }</TransitionStairs> */}
-        <TransitionInner>{children}</TransitionInner>
+        {/* <TransitionInner>{children}</TransitionInner> */}
+        <TransitionEase>{children}</TransitionEase>
       </body>
     </html>
   )
