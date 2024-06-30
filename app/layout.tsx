@@ -16,7 +16,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <body className={inter.className}>
-        <header className="fixed z-[12] top-0 left-0 w-screen h-8">
+        <header className="fixed z-[12] text-black top-0 left-0 w-screen h-8">
           <Link href="/">Home</Link>
           <Link href="/about">About</Link>
         </header>
